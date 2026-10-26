@@ -3,7 +3,7 @@ window.GULOS_SEED = {
  "store": {
   "name": "Hamburgueria Gulos",
   "logo": "https://beetech-imagens.beefood-r2.work/5284/e/logo360/20221226T1856825_5480_mqp9jvh5logo360.webp",
-  "banner": "",
+  "banner": "img/20221226T1854ccc.webp",
   "address": "Cleovansóstenes dos Santos, 370 - Bugio, Aracaju - SE",
   "phone": "(79) 99983-6814",
   "hours": "Dom e Sáb 17:00–22:50 · Seg, Ter, Qui e Sex 17:30–22:50 · Qua fechado",
