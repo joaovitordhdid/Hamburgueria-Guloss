@@ -47,7 +47,7 @@
     fresh.products.forEach(fp => {
       const p = s.products.find(x => x.id === fp.id);
       if (!p) { s.products.push(fp); return; }
-      ['image', 'description'].forEach(k => { if (!p[k] && fp[k]) p[k] = fp[k]; });
+      ['image', 'description'].forEach(k => { if ((!p[k] || /beefood-r2/.test(p[k])) && fp[k]) p[k] = fp[k]; });
       if (!(p.ingredients || []).length && fp.ingredients.length) p.ingredients = fp.ingredients;
       if (!(p.options || []).length && fp.options.length) p.options = fp.options;
     });
