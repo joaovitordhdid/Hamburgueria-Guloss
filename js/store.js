@@ -31,9 +31,28 @@
   function load() {
     try {
       const raw = localStorage.getItem(KEY);
-      if (raw) return JSON.parse(raw);
+      if (raw) return mergeSeed(JSON.parse(raw));
     } catch (e) {}
     return seed();
+  }
+
+  /* Quando o cardápio original (data.js) muda, traz novidades sem apagar as edições do dono:
+     produtos novos entram, e fotos/descrições/banner só são preenchidos onde estavam vazios. */
+  function mergeSeed(s) {
+    const ver = JSON.stringify(window.GULOS_SEED).length;
+    if (s.seedVersion === ver) return s;
+    const fresh = seed();
+    ['banner', 'logo'].forEach(k => { if (!s.store[k] && fresh.store[k]) s.store[k] = fresh.store[k]; });
+    fresh.categories.forEach(c => { if (!s.categories.some(x => x.id === c.id)) s.categories.push(c); });
+    fresh.products.forEach(fp => {
+      const p = s.products.find(x => x.id === fp.id);
+      if (!p) { s.products.push(fp); return; }
+      ['image', 'description'].forEach(k => { if (!p[k] && fp[k]) p[k] = fp[k]; });
+      if (!(p.ingredients || []).length && fp.ingredients.length) p.ingredients = fp.ingredients;
+      if (!(p.options || []).length && fp.options.length) p.options = fp.options;
+    });
+    s.seedVersion = ver;
+    return s;
   }
 
   let state = load();
