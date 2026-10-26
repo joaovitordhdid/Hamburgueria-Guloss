@@ -1,0 +1,36 @@
+/* Tokens globais compartilhados pelos três módulos. */
+:root {
+  --bg: #0f0b08;
+  --surface: #1a140f;
+  --surface-2: #241b14;
+  --line: rgba(255, 236, 214, .1);
+  --text: #fff4e8;
+  --muted: #b9a693;
+  --brand: #ff7a1a;
+  --brand-2: #ffc23d;
+  --danger: #ff4d4d;
+  --ok: #3ddc84;
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #fff8f0; --surface: #ffffff; --surface-2: #fbefe2; --line: rgba(60, 30, 10, .1);
+    --text: #241409; --muted: #7a6350; --shadow: 0 10px 30px rgba(80, 40, 10, .12);
+  }
+}
+:root[data-theme="light"] {
+  --bg: #fff8f0; --surface: #ffffff; --surface-2: #fbefe2; --line: rgba(60, 30, 10, .1);
+  --text: #241409; --muted: #7a6350; --shadow: 0 10px 30px rgba(80, 40, 10, .12);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.5; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--brand-2); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
