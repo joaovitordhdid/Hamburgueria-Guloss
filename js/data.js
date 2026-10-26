@@ -80,7 +80,7 @@ window.GULOS_SEED = {
    "description": "",
    "price": 18.0,
    "oldPrice": null,
-   "image": "",
+   "image": "https://beetech-imagens.beefood-r2.work/5284/p/webp/85422305c.webp",
    "ingredients": [],
    "options": []
   },
@@ -91,7 +91,7 @@ window.GULOS_SEED = {
    "description": "",
    "price": 20.0,
    "oldPrice": null,
-   "image": "",
+   "image": "https://beetech-imagens.beefood-r2.work/5284/p/webp/116107114.webp",
    "ingredients": [],
    "options": []
   },
@@ -102,7 +102,7 @@ window.GULOS_SEED = {
    "description": "",
    "price": 25.0,
    "oldPrice": null,
-   "image": "",
+   "image": "https://beetech-imagens.beefood-r2.work/5284/p/webp/11434410d.webp",
    "ingredients": [],
    "options": []
   },
@@ -113,7 +113,7 @@ window.GULOS_SEED = {
    "description": "",
    "price": 23.0,
    "oldPrice": null,
-   "image": "",
+   "image": "https://beetech-imagens.beefood-r2.work/5284/p/webp/129110e03.webp",
    "ingredients": [],
    "options": []
   },
