@@ -29,7 +29,39 @@ body.menu-has-cartbar { padding-bottom: 92px; }
 .menu-hero-banner {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
   transform: scale(1.04);
+  transform-origin: 55% 45%;
+  animation: menu-burger-breathe 9s ease-in-out infinite;
+  will-change: transform;
 }
+/* o burger da foto "respira": zoom lento com leve flutuação */
+@keyframes menu-burger-breathe {
+  0%, 100% { transform: scale(1.04) translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: scale(1.12) translate3d(-1.2%, -1.6%, 0) rotate(-.6deg); }
+}
+/* vapor subindo do burger */
+.menu-steam { position: absolute; z-index: -1; left: 50%; top: 22%; width: 60%; height: 40%; transform: translateX(-35%); pointer-events: none; }
+.menu-steam i {
+  position: absolute; bottom: 0; width: 34%; aspect-ratio: 1 / 1.6; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 248, 238, .38), rgba(255, 248, 238, 0));
+  filter: blur(14px); opacity: 0;
+  animation: menu-steam 6s ease-out infinite;
+}
+.menu-steam i:nth-child(1) { left: 8%; }
+.menu-steam i:nth-child(2) { left: 34%; animation-delay: 2s; animation-duration: 7s; }
+.menu-steam i:nth-child(3) { left: 60%; animation-delay: 4s; }
+@keyframes menu-steam {
+  0% { transform: translate(0, 40%) scale(.6); opacity: 0; }
+  25% { opacity: .9; }
+  100% { transform: translate(14%, -90%) scale(1.5) rotate(12deg); opacity: 0; }
+}
+/* brilho que passa pela foto de tempos em tempos */
+.menu-hero.has-banner::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 214, 150, .16) 50%, transparent 65%);
+  background-size: 250% 100%;
+  animation: menu-sheen 7s ease-in-out infinite;
+}
+@keyframes menu-sheen { 0%, 55% { background-position: 130% 0; } 100% { background-position: -30% 0; } }
 .menu-hero.has-banner::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(180deg, rgba(18, 9, 4, .25) 0%, rgba(18, 9, 4, .55) 45%, #120904 100%);
@@ -91,6 +123,15 @@ body.menu-has-cartbar { padding-bottom: 92px; }
 .menu-logo {
   width: 52px; height: 52px; border-radius: 16px; object-fit: cover; flex: none;
   box-shadow: 0 6px 20px rgba(0, 0, 0, .4), 0 0 0 2px rgba(255, 244, 232, .15);
+}
+.menu-logo { animation: menu-logo-bob 4s ease-in-out infinite; }
+/* logo: flutua, dá uma balançadinha e acende um anel laranja */
+@keyframes menu-logo-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); box-shadow: 0 6px 20px rgba(0, 0, 0, .4), 0 0 0 2px rgba(255, 244, 232, .15); }
+  20% { transform: translateY(-4px) rotate(-7deg); }
+  30% { transform: translateY(-5px) rotate(6deg); }
+  40% { transform: translateY(-4px) rotate(-3deg); }
+  50% { transform: translateY(-3px) rotate(0deg); box-shadow: 0 10px 26px rgba(0, 0, 0, .45), 0 0 0 3px rgba(255, 122, 26, .55), 0 0 26px rgba(255, 122, 26, .5); }
 }
 .menu-logo--mono {
   display: grid; place-items: center;
@@ -674,7 +715,8 @@ body.menu-has-cartbar { padding-bottom: 92px; }
     animation-duration: .001ms !important; animation-iteration-count: 1 !important;
     transition-duration: .001ms !important; scroll-behavior: auto !important;
   }
-  .menu-embers, .menu-hero-glow { display: none; }
+  .menu-embers, .menu-hero-glow, .menu-steam { display: none; }
+  .menu-hero-banner, .menu-logo, .menu-hero.has-banner::after { animation: none !important; }
   .menu-ticker-row { animation: none !important; }
   .menu-rot-track { animation: none !important; }
 }

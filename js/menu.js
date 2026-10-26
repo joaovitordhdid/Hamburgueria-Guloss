@@ -190,6 +190,7 @@
 
   /* ---------- hero ---------- */
   const TAGS = ['suculento', 'artesanal', 'feito na hora', 'do seu jeito'];
+  let lastHeroHtml = '';
   function renderHero() {
     const { store, config } = data();
     const name = store.name || 'Hamburgueria Gulos';
@@ -212,9 +213,10 @@
       : `<span class="menu-logo menu-logo--mono" aria-hidden="true">${esc(initials(big)[0])}</span>`;
 
     elHero.classList.toggle('has-banner', !!store.banner);
-    elHero.innerHTML = `
+    const html = `
       ${store.banner ? `<img class="menu-hero-banner" src="${esc(store.banner)}" alt="" fetchpriority="high" onerror="this.remove();document.getElementById('menu-hero').classList.remove('has-banner')">` : ''}
       <div class="menu-hero-glow" aria-hidden="true"></div>
+      ${store.banner ? `<div class="menu-steam" aria-hidden="true">${'<i></i>'.repeat(3)}</div>` : ''}
       <div class="menu-embers" aria-hidden="true">${'<i></i>'.repeat(14)}</div>
       ${store.banner ? '' : `<div class="menu-hero-burger" aria-hidden="true">${SVG.burger}</div>`}
       <div class="menu-hero-in">
@@ -224,6 +226,8 @@
         <ul class="menu-hero-meta">${meta.join('')}</ul>
         <a class="menu-hero-cta" href="#menu-sections">Ver cardápio <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>`;
+    // só redesenha quando algo muda, para não reiniciar as animações do topo
+    if (html !== lastHeroHtml) { elHero.innerHTML = html; lastHeroHtml = html; }
   }
   setInterval(() => { if (data().store.hours) renderHero(); }, 60000);
 
